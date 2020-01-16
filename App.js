@@ -27,13 +27,20 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const width = Dimensions.get('screen').width;
+const fotos = [{id: 1, usuario: 'Robson'},
+               {id: 2, usuario: 'Izabella'},
+               {id: 3, usuario: 'React'}]
 
 const App: () => React$Node = () => {
   return (
-    <View>
-      <Text>Robson de Jesus</Text>
-      <Image source={require('./resources/img/izabella.jpg')} style={{width:width, height:width}} />
-    </View>
+    <ScrollView>
+      {fotos.map( foto =>
+        <View key={foto.id}>
+          <Text>{foto.usuario}</Text>
+          <Image source={require('./resources/img/izabella.jpg')} style={{width:width, height:width}} />
+        </View>
+      )}
+    </ScrollView>
   );
 };
 
