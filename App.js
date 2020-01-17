@@ -33,17 +33,39 @@ const fotos = [{id: 1, usuario: 'Robson'},
 
 const App: () => React$Node = () => {
   return (
-    <FlatList
+    <FlatList style={styles.container}
       data={fotos}
       KeyExtractor={item => String(item.id)}
       renderItem={ ({item}) => 
         <View>
-          <Text>{item.usuario}</Text>
-          <Image source={require('./resources/img/izabella.jpg')} style={{width:width, height:width}} />
+          <View style={styles.cabecalho}>
+            <Image source={require('./resources/img/izabella.jpg')} style={styles.fotoDePerfil} />
+            <Text>{item.usuario}</Text>
+          </View>
+          <Image source={require('./resources/img/izabella.jpg')} style={styles.foto} />
         </View>
       }
     />
   );
 };
+
+const styles = StyleSheet.create({
+  container: {},
+  cabecalho: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  fotoDePerfil: {
+    marginRight: 10,
+    borderRadius: 20,
+    width: 40,
+    height: 40
+  },
+  foto: {
+    width: width,
+    height: width
+  }
+})
 
 export default App;
