@@ -10,7 +10,7 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
+  FlatList,
   View,
   Text,
   StatusBar,
@@ -33,14 +33,16 @@ const fotos = [{id: 1, usuario: 'Robson'},
 
 const App: () => React$Node = () => {
   return (
-    <ScrollView>
-      {fotos.map( foto =>
-        <View key={foto.id}>
-          <Text>{foto.usuario}</Text>
+    <FlatList
+      data={fotos}
+      KeyExtractor={item => String(item.id)}
+      renderItem={ ({item}) => 
+        <View>
+          <Text>{item.usuario}</Text>
           <Image source={require('./resources/img/izabella.jpg')} style={{width:width, height:width}} />
         </View>
-      )}
-    </ScrollView>
+      }
+    />
   );
 };
 
