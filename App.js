@@ -16,7 +16,7 @@ import {
   StatusBar
 } from 'react-native';
 
-import Post from './src/component/Post';
+import InstaluraMobile from './src/app';
 
 import {
   Header,
@@ -26,19 +26,10 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const fotos = [{id: 1, usuario: 'Robson'},
-               {id: 2, usuario: 'Izabella'},
-               {id: 3, usuario: 'React'}]
-
 const App: () => React$Node = () => {
+
   return (
-    <FlatList style={styles.container}
-      data={fotos}
-      KeyExtractor={item => String(item.id)}
-      renderItem={ ({item}) => 
-        <Post foto={item} />
-      }
-    />
+    <InstaluraMobile />
   );
 };
 
