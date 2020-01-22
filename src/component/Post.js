@@ -15,7 +15,7 @@ export default class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      foto: this.props.foto
+      foto: {...this.props.foto}
     }
   }
 
@@ -30,6 +30,12 @@ export default class Post extends Component {
     }
 
     this.setState({foto: fotoAtualizada});
+  }
+
+  exibeLikes(likers) {
+    if(likers.length > 0)
+      return;
+    return (<Text style={styles.like}>{likers.length} {likers.length > 1 ? "curtidas" : "curtida"}</Text>)
   }
 
   render() {
@@ -47,6 +53,7 @@ export default class Post extends Component {
             <Image style={styles.botaoDeLike} 
                   source={this.carregaIcone(foto.likeada)} />
           </TouchableOpacity>
+          {this.exibeLikes(foto.likers)}
         </View>
       </View>
     );
@@ -71,9 +78,13 @@ const styles = StyleSheet.create({
   },
   botaoDeLike: {
     height: 40,
-    width: 40
+    width: 40,
+    marginBottom: 10
   },
   rodape: {
     marginTop: 10
+  },
+  likes: {
+    fontWeight: 'bold'
   }
 })
