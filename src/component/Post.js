@@ -38,6 +38,18 @@ export default class Post extends Component {
     return (<Text style={styles.like}>{likers.length} {likers.length > 1 ? "curtidas" : "curtida"}</Text>)
   }
 
+  exibeLegenda(foto) {
+    if(foto.comentario === '')
+      return;
+
+    return(
+      <View style={styles.comentario}>
+        <Text style={styles.tituloComentario}>{foto.loginUsuario}</Text>
+        <Text>{foto.comentario}</Text>
+      </View>
+    )
+  }
+
   render() {
     const { foto } = this.state;
 
@@ -54,6 +66,7 @@ export default class Post extends Component {
                   source={this.carregaIcone(foto.likeada)} />
           </TouchableOpacity>
           {this.exibeLikes(foto.likers)}
+          {this.exibeLegenda(foto)}
         </View>
       </View>
     );
@@ -86,5 +99,12 @@ const styles = StyleSheet.create({
   },
   likes: {
     fontWeight: 'bold'
+  },
+  comentario: {
+    flexDirection: 'row'
+  },
+  tituloComentario: {
+    fontWeight: 'bold',
+    marginRight: 5
   }
 })
