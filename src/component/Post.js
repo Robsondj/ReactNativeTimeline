@@ -15,7 +15,7 @@ export default class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      foto: {...this.props.foto}
+      foto: {...this.props.foto, likers: [{}]}
     }
   }
 
@@ -24,16 +24,25 @@ export default class Post extends Component {
   }
 
   like() {
+    const { foto } = this.state;
+    let novaLista = [];
+    if(!foto.likeada) {
+      novaLista = foto.likers.concat({login: 'meuUsuario'});
+    } else {
+      novaLista = foto.likers.filter(like => like.login !== 'meuUsuario');
+    }
+
     const fotoAtualizada = {
-      ...this.state.foto,
-      likeada: !this.state.foto.likeada
+      ...foto,
+      likeada: !foto.likeada,
+      likers: novaLista
     }
 
     this.setState({foto: fotoAtualizada});
   }
 
   exibeLikes(likers) {
-    if(likers.length > 0)
+    if(likers.length <= 0)
       return;
     return (<Text style={styles.like}>{likers.length} {likers.length > 1 ? "curtidas" : "curtida"}</Text>)
   }
